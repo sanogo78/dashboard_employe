@@ -42,6 +42,34 @@
                     <span class="info-value">{{ employe.prenom }}</span>
                 </div>
                 <div class="delete-info-item">
+                    <span class="info-label">Sexe</span>
+                    <span class="info-value">{{ employe.sexe }}</span>
+                </div>
+                <div class="delete-info-item">
+                    <span class="info-label">Date de naissance</span>
+                    <span class="info-value">{{ employe.date_naissance|date:"d/m/Y" }}</span>
+                </div>
+                {% if employe.adresse %}
+                <div class="delete-info-item">
+                    <span class="info-label">Adresse</span>
+                    <span class="info-value">{{ employe.adresse }}</span>
+                </div>
+                {% endif %}
+                <div class="delete-info-item">
+                    <span class="info-label">Date d'embauche</span>
+                    <span class="info-value">{{ employe.date_embauche|date:"d/m/Y" }}</span>
+                </div>
+                <div class="delete-info-item">
+                    <span class="info-label">État civil</span>
+                    <span class="info-value">{{ employe.etat_civil }}</span>
+                </div>
+                {% if employe.telephone %}
+                <div class="delete-info-item">
+                    <span class="info-label">Téléphone</span>
+                    <span class="info-value">{{ employe.telephone }}</span>
+                </div>
+                {% endif %}
+                <div class="delete-info-item">
                     <span class="info-label">Fonction</span>
                     <span class="info-value">{{ employe.fonction }}</span>
                 </div>

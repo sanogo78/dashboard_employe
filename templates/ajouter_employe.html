@@ -2,6 +2,8 @@
 {% load static %} {% block title %}Ajouter un
 employé{% endblock %} {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/ajouter.css' %}" />
+{% endblock %} {% block extra_js %}
+<script src="{% static 'js/validation.js' %}"></script>
 {% endblock %} {% block content %}
 <section class="add-employee-page">
   <div class="add-employee-hero">
@@ -14,8 +16,7 @@ employé{% endblock %} {% block extra_css %}
       </p>
     </div>
     <div class="page-hint">
-      Tous les champs sont visibles ensemble sur grand écran pour accélérer la
-      saisie.
+      Espace de remplisssage des informations des employés.
     </div>
   </div>
 
