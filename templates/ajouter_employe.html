@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+{% load static %} {% block title %}Ajouter un
+employé{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ajouter.css' %}" />
+{% endblock %} {% block content %}
+<section class="add-employee-page">
+  <div class="add-employee-hero">
+    <div>
+      <span class="page-kicker">Nouveau dossier employé</span>
+      <h2>Ajouter un employé</h2>
+      <p class="page-intro">
+        Renseignez les informations essentielles dans un formulaire clair et
+        regroupé.
+      </p>
+    </div>
+    <div class="page-hint">
+      Tous les champs sont visibles ensemble sur grand écran pour accélérer la
+      saisie.
+    </div>
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="employee-form-card">
+    {% csrf_token %} {% if form.non_field_errors %}
+    <div class="form-alert">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="employee-form-grid">
+      {% for field in form %}
+      <div
+        class="form-field {% if field.name == 'adresse' %}field-wide{% endif %} {% if field.name == 'photo' %}field-photo{% endif %}"
+      >
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }} {% if field.help_text %}
+        <small class="field-help">{{ field.help_text }}</small>
+        {% endif %} {% for error in field.errors %}
+        <div class="field-error">{{ error }}</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+      <a href="{% url 'liste_employes' %}" class="btn btn-warning">Annuler</a>
+    </div>
+  </form>
+</section>
+{% endblock content %}

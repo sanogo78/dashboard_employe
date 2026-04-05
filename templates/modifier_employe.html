@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Modifier un employé{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ajouter.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="add-employee-page">
+    <div class="add-employee-hero">
+        <div>
+            <span class="page-kicker">Mise à jour du dossier</span>
+            <h2>Modifier {{ form.instance.nom }} {{ form.instance.prenom }}</h2>
+            <p class="page-intro">
+                Ajustez les informations de l'employé dans une interface regroupée et lisible.
+            </p>
+        </div>
+        <div class="page-hint">
+            Vérifiez chaque information avant d'enregistrer les modifications.
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="employee-form-card">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="form-alert">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        {% if form.instance.photo %}
+        <div class="current-photo-card">
+            <div>
+                <p class="current-photo-label">Photo actuelle</p>
+                <p class="current-photo-text">
+                    Vous pouvez conserver cette photo ou en téléverser une nouvelle.
+                </p>
+            </div>
+            <img
+                src="{{ form.instance.photo.url }}"
+                alt="Photo de {{ form.instance.nom }}"
+                class="current-photo-preview"
+            />
+        </div>
+        {% endif %}
+
+        <div class="employee-form-grid">
+            {% for field in form %}
+            <div class="form-field {% if field.name == 'adresse' %}field-wide{% endif %} {% if field.name == 'photo' %}field-photo{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <small class="field-help">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                <div class="field-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            <a href="{% url 'detail_employe' form.instance.pk %}" class="btn btn-warning">Annuler</a>
+        </div>
+    </form>
+</section>
+{% endblock content %}

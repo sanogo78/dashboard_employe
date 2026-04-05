@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Détail employé{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/detail_employe.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="employee-detail-page">
+    <div class="detail-hero">
+        <div>
+            <span class="page-kicker">Fiche employé</span>
+            <h2>{{ employe.nom }} {{ employe.prenom }}</h2>
+            <p class="detail-intro">
+                Consultez l'ensemble des informations personnelles et professionnelles de cet employé.
+            </p>
+            <div class="detail-badges">
+                <span class="detail-chip detail-chip-id">EMP-{{ employe.id }}</span>
+                <span class="detail-chip detail-chip-role">{{ employe.fonction }}</span>
+            </div>
+        </div>
+
+        <div class="detail-photo-card">
+            {% if employe.photo %}
+            <img
+                src="{{ employe.photo.url }}"
+                alt="Photo de {{ employe.nom }}"
+                class="detail-photo"
+            >
+            {% else %}
+            <div class="detail-photo-placeholder">
+                {{ employe.nom|slice:":1" }}{{ employe.prenom|slice:":1" }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-card">
+            <h3>Informations personnelles</h3>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">Sexe</span>
+                    <span class="info-value">{{ employe.sexe }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Date de naissance</span>
+                    <span class="info-value">{{ employe.date_naissance }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">État civil</span>
+                    <span class="info-value">{{ employe.etat_civil }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Téléphone</span>
+                    <span class="info-value">{{ employe.telephone|default:"Non renseigné" }}</span>
+                </div>
+                <div class="info-item info-item-wide">
+                    <span class="info-label">Adresse</span>
+                    <span class="info-value">{{ employe.adresse|default:"Non renseignée" }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <h3>Informations professionnelles</h3>
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">Fonction</span>
+                    <span class="info-value">{{ employe.fonction }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Date d'embauche</span>
+                    <span class="info-value">{{ employe.date_embauche }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Identifiant</span>
+                    <span class="info-value">EMP-{{ employe.id }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="detail-actions">
+        <a href="{% url 'modifier_employe' employe.id %}" class="btn btn-primary">Modifier</a>
+        <a href="{% url 'supprimer_employe' employe.id %}" class="btn btn-danger">Supprimer</a>
+        <a href="{% url 'bulletin_employe' employe.id %}" class="btn btn-warning">Imprimer le bulletin</a>
+    </div>
+</section>
+{% endblock content %}

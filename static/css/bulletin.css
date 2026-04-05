@@ -1,0 +1,164 @@
+@page {
+  size: A4;
+  margin: 1.4cm;
+}
+
+body {
+  margin: 0;
+  font-family: DejaVu Sans, Arial, sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sheet {
+  border: 1px solid #d8dee8;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.topbar {
+  height: 10px;
+  background: linear-gradient(90deg, #0f766e 0%, #0b5c56 55%, #d97706 100%);
+}
+
+.content {
+  padding: 26px 28px 22px;
+}
+
+.header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #102a43;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: #52606d;
+}
+
+.identity {
+  width: 100%;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+}
+
+.identity td {
+  vertical-align: top;
+}
+
+.identity-main {
+  padding-right: 18px;
+}
+
+.employee-name {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #16324f;
+}
+
+.employee-role {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ecfdf5;
+  color: #0f766e;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meta {
+  margin: 0;
+  color: #52606d;
+}
+
+.photo-cell {
+  width: 150px;
+  text-align: right;
+}
+
+.photo-frame {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  border: 4px solid #f0f4f8;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.section-title {
+  margin: 0 0 14px;
+  padding-left: 12px;
+  border-left: 5px solid #d97706;
+  font-size: 15px;
+  font-weight: 800;
+  color: #102a43;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.info-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.info-table tr:nth-child(odd) td {
+  background: #f8fafc;
+}
+
+.info-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.label {
+  width: 38%;
+  font-weight: 700;
+  color: #334e68;
+}
+
+.value {
+  color: #1f2937;
+}
+
+.footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #d8dee8;
+  text-align: center;
+  font-size: 10px;
+  color: #7b8794;
+}

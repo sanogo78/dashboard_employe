@@ -1,0 +1,54 @@
+{% extends "base.html" %} 
+{% load static %} {% block title %}Accueil | Dashboard
+Employés{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/accueil.css' %}" />
+{% endblock %} {% block content %}
+<section class="hero-section">
+  <div class="hero-badge">Gestion des ressources humaines</div>
+  <h2 class="hero-title">Bienvenue sur le tableau de bord des employés</h2>
+  <p class="hero-text">
+    Cette application vous permet d'ajouter, consulter, modifier, supprimer et
+    imprimer les fiches de vos employés.
+  </p>
+  <p class="hero-subtext">
+    Utilisez les raccourcis ci-dessous pour commencer rapidement.
+  </p>
+
+  <div class="hero-actions">
+    <a href="{% url 'ajouter_employe' %}" class="btn btn-primary"
+      >Ajouter un employé</a
+    >
+    <a href="{% url 'liste_employes' %}" class="btn btn-warning"
+      >Voir la liste des employés</a
+    >
+  </div>
+</section>
+
+<section class="feature-grid">
+  <div class="feature-column">
+    <div class="card feature-card h-100">
+      <div class="card-body">
+        <span class="feature-number">01</span>
+        <h5 class="card-title">Gestion complète</h5>
+        <p class="card-text">
+          Administrez les informations des employés depuis une interface simple
+          et centralisée.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-column">
+    <div class="card feature-card h-100">
+      <div class="card-body">
+        <span class="feature-number">02</span>
+        <h5 class="card-title">Fiches et bulletins</h5>
+        <p class="card-text">
+          Consultez les détails d'un employé et générez facilement son bulletin
+          d'information.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,93 @@
+{% extends "base.html" %} 
+{% load static %} {% block title %}Liste des
+employés{% endblock %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/liste_employes.css' %}" />
+{% endblock %} {% block content %}
+<section class="employee-list-page">
+  <div class="employee-list-hero">
+    <div>
+      <span class="page-kicker">Répertoire du personnel</span>
+      <h2>Liste des employés</h2>
+      <p class="page-intro">
+        Recherchez rapidement un employé et accédez à ses actions principales
+        depuis un seul écran.
+      </p>
+    </div>
+    <div class="employee-summary-card">
+      <span class="summary-label">Total affiché</span>
+      <strong class="summary-value">{{ employes|length }}</strong>
+    </div>
+  </div>
+
+  <form method="get" class="search-panel">
+    <div class="search-field">
+      <label for="employee-search">Recherche</label>
+      <input
+        id="employee-search"
+        type="text"
+        name="q"
+        value="{{ query }}"
+        placeholder="Rechercher par ID, nom ou prénom"
+      />
+    </div>
+    <div class="search-actions">
+      <button type="submit" class="btn btn-primary">Rechercher</button>
+      <a href="{% url 'liste_employes' %}" class="btn btn-warning"
+        >Réinitialiser</a
+      >
+    </div>
+  </form>
+
+  <div class="table-shell">
+    <table class="employee-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Fonction</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in employes %}
+        <tr>
+          <td><span class="employee-id">EMP-{{ e.id }}</span></td>
+          <td data-label="Nom">{{ e.nom }}</td>
+          <td data-label="Prénom">{{ e.prenom }}</td>
+          <td data-label="Fonction"><span class="employee-role">{{ e.fonction }}</span></td>
+          <td data-label="Actions">
+            <div class="table-actions">
+              <a href="{% url 'detail_employe' e.id %}" class="btn btn-warning"
+                >Voir</a
+              >
+              <a
+                href="{% url 'modifier_employe' e.id %}"
+                class="btn btn-primary"
+                >Modifier</a
+              >
+              <a
+                href="{% url 'supprimer_employe' e.id %}"
+                class="btn btn-danger"
+                >Supprimer</a
+              >
+              <a
+                href="{% url 'bulletin_employe' e.id %}"
+                class="btn btn-warning"
+                >Imprimer</a
+              >
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="empty-state">
+            Aucun employé trouvé pour cette recherche.
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock content %}

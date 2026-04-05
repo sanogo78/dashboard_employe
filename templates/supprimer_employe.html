@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Supprimer un employé{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/supprimer_employe.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="delete-page">
+    <div class="delete-hero">
+        <div>
+            <span class="page-kicker danger-kicker">Zone sensible</span>
+            <h2>Supprimer {{ employe.nom }} {{ employe.prenom }}</h2>
+            <p class="delete-intro">
+                Cette opération retirera définitivement cet employé de la base de données.
+            </p>
+        </div>
+        <div class="warning-badge">
+            Action irréversible
+        </div>
+    </div>
+
+    <div class="delete-layout">
+        <div class="delete-card">
+            <h3>Confirmation de suppression</h3>
+            <p class="delete-message">
+                Voulez-vous vraiment supprimer cet employé ? Vérifiez les informations ci-dessous avant de confirmer.
+            </p>
+
+            <div class="delete-info-list">
+                <div class="delete-info-item">
+                    <span class="info-label">Identifiant</span>
+                    <span class="info-value">EMP-{{ employe.id }}</span>
+                </div>
+                <div class="delete-info-item">
+                    <span class="info-label">Nom</span>
+                    <span class="info-value">{{ employe.nom }}</span>
+                </div>
+                <div class="delete-info-item">
+                    <span class="info-label">Prénom</span>
+                    <span class="info-value">{{ employe.prenom }}</span>
+                </div>
+                <div class="delete-info-item">
+                    <span class="info-label">Fonction</span>
+                    <span class="info-value">{{ employe.fonction }}</span>
+                </div>
+            </div>
+
+            <form method="post" class="delete-actions">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+                <a href="{% url 'detail_employe' employe.id %}" class="btn btn-warning">Annuler</a>
+            </form>
+        </div>
+
+        <div class="delete-photo-card">
+            {% if employe.photo %}
+            <img
+                src="{{ employe.photo.url }}"
+                alt="Photo de {{ employe.nom }}"
+                class="delete-photo"
+            >
+            {% else %}
+            <div class="delete-photo-placeholder">
+                {{ employe.nom|slice:":1" }}{{ employe.prenom|slice:":1" }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
