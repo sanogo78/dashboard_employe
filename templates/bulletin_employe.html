@@ -19,15 +19,25 @@
         <table class="identity">
           <tr>
             <td class="identity-main">
-              <h2 class="employee-name">{{ employe.nom }} {{ employe.prenom }}</h2>
+              <h2 class="employee-name">
+                {{ employe.nom }} {{ employe.prenom }}
+              </h2>
               <div class="employee-role">{{ employe.fonction }}</div>
-              <p class="meta"><strong>Matricule :</strong> EMP-{{ employe.id }}</p>
-              <p class="meta"><strong>Date d'embauche :</strong> {{ employe.date_embauche }}</p>
+              <p class="meta">
+                <strong>Matricule :</strong> EMP-{{ employe.id }}
+              </p>
+              <p class="meta">
+                <strong>Date d'embauche :</strong> {{ employe.date_embauche }}
+              </p>
             </td>
             <td class="photo-cell">
               {% if photo_url %}
               <div class="photo-frame">
-                <img src="{{ photo_url }}" alt="Photo de {{ employe.nom }}" class="photo" />
+                <img
+                  src="{{ photo_url }}"
+                  alt="Photo de {{ employe.nom }}"
+                  class="photo"
+                />
               </div>
               {% endif %}
             </td>
@@ -37,10 +47,10 @@
         <h3 class="section-title">Informations personnelles</h3>
 
         <table class="info-table">
-          <tr>
+          <!-- <tr>
             <td class="label">Identifiant</td>
             <td class="value">{{ employe.id }}</td>
-          </tr>
+          </tr>-->
           <tr>
             <td class="label">Nom</td>
             <td class="value">{{ employe.nom }}</td>
@@ -63,11 +73,15 @@
           </tr>
           <tr>
             <td class="label">Téléphone</td>
-            <td class="value">{{ employe.telephone|default:"Non renseigné" }}</td>
+            <td class="value">
+              {{ employe.telephone|default:"Non renseigné" }}
+            </td>
           </tr>
           <tr>
             <td class="label">Adresse</td>
-            <td class="value">{{ employe.adresse|default:"Non renseignée" }}</td>
+            <td class="value">
+              {{ employe.adresse|default:"Non renseignée" }}
+            </td>
           </tr>
           <tr>
             <td class="label">Fonction</td>
@@ -80,7 +94,7 @@
         </table>
 
         <div class="footer">
-          Bulletin généré automatiquement par le dashboard des employés.
+          Bulletin généré automatiquement à partir du dashboard des employés.
         </div>
       </div>
     </div>
