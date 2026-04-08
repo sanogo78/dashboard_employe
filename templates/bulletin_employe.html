@@ -2,7 +2,7 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Bulletin employé</title>
+    <title>Bulletin employé | Chez TOP QUALITÉ</title>
     <link rel="stylesheet" href="{{ css_url }}" />
   </head>
   <body>
@@ -11,8 +11,17 @@
 
       <div class="content">
         <div class="header">
+          {% if logo_url %}
+          <div class="logo-wrap">
+            <img
+              src="{{ logo_url }}"
+              alt="Logo Chez TOP QUALITÉ"
+              class="logo"
+            />
+          </div>
+          {% endif %}
           <p class="eyebrow">Document Administratif</p>
-          <h1 class="title">Bulletin d'information employé</h1>
+          <h1 class="title">Bulletin employé | Chez TOP QUALITÉ</h1>
           <p class="subtitle">Fiche individuelle du personnel</p>
         </div>
 
@@ -24,7 +33,7 @@
               </h2>
               <div class="employee-role">{{ employe.fonction }}</div>
               <p class="meta">
-                <strong>Matricule :</strong> EMP-{{ employe.id }}
+                <strong>Matricule :</strong> TOPQTÉ-{{ employe.id }}
               </p>
               <p class="meta">
                 <strong>Date d'embauche :</strong> {{ employe.date_embauche }}
@@ -47,10 +56,10 @@
         <h3 class="section-title">Informations personnelles</h3>
 
         <table class="info-table">
-          <!-- <tr>
-            <td class="label">Identifiant</td>
+          <tr>
+            <td class="label">Employé N°</td>
             <td class="value">{{ employe.id }}</td>
-          </tr>-->
+          </tr>
           <tr>
             <td class="label">Nom</td>
             <td class="value">{{ employe.nom }}</td>

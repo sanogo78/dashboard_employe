@@ -1,8 +1,11 @@
 {% extends "base.html" %} 
-{% load static %} {% block title %}Liste des
-employés{% endblock %} {% block extra_css %}
+{% load static %} 
+{% block title %}Liste des employés{% endblock %} 
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/liste_employes.css' %}" />
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
 <section class="employee-list-page">
   <div class="employee-list-hero">
     <div>
@@ -13,9 +16,19 @@ employés{% endblock %} {% block extra_css %}
         depuis un seul écran.
       </p>
     </div>
-    <div class="employee-summary-card">
-      <span class="summary-label">Total affiché</span>
-      <strong class="summary-value">{{ employes|length }}</strong>
+    <div class="employee-summary-grid">
+      <div class="employee-summary-card">
+        <span class="summary-label">Total employés enregistrés</span>
+        <strong class="summary-value">{{ total_employes }}</strong>
+      </div>
+      <div class="employee-summary-card">
+        <span class="summary-label">Hommes enregistrés</span>
+        <strong class="summary-value">{{ total_hommes }}</strong>
+      </div>
+      <div class="employee-summary-card">
+        <span class="summary-label">Femmes enregistrées</span>
+        <strong class="summary-value">{{ total_femmes }}</strong>
+      </div>
     </div>
   </div>
 
@@ -29,6 +42,17 @@ employés{% endblock %} {% block extra_css %}
         value="{{ query }}"
         placeholder="Rechercher par ID, nom ou prénom"
       />
+    </div>
+    <div class="search-field">
+      <label for="employee-sex">Sexe</label>
+      <select id="employee-sex" name="sexe">
+        <option value="">Tous les sexes</option>
+        {% for value, label in sexe_choices %}
+        <option value="{{ value }}" {% if selected_sexe == value %}selected{% endif %}>
+          {{ label }}
+        </option>
+        {% endfor %}
+      </select>
     </div>
     <div class="search-actions">
       <button type="submit" class="btn btn-primary">Rechercher</button>
@@ -45,6 +69,7 @@ employés{% endblock %} {% block extra_css %}
           <th>ID</th>
           <th>Nom</th>
           <th>Prénom</th>
+          <th>Sexe</th>
           <th>Fonction</th>
           <th>Actions</th>
         </tr>
@@ -52,10 +77,15 @@ employés{% endblock %} {% block extra_css %}
       <tbody>
         {% for e in employes %}
         <tr>
-          <td><span class="employee-id">EMP-{{ e.id }}</span></td>
+          <td><span class="employee-id">TOPQTÉ-{{ e.id }}</span></td>
           <td data-label="Nom">{{ e.nom }}</td>
           <td data-label="Prénom">{{ e.prenom }}</td>
-          <td data-label="Fonction"><span class="employee-role">{{ e.fonction }}</span></td>
+          <td data-label="Sexe">
+            <span class="employee-sex employee-sex-{{ e.sexe|lower }}">{{ e.sexe }}</span>
+          </td>
+          <td data-label="Fonction">
+            <span class="employee-role">{{ e.fonction }}</span>
+          </td>
           <td data-label="Actions">
             <div class="table-actions">
               <a href="{% url 'detail_employe' e.id %}" class="btn btn-warning"
@@ -81,7 +111,7 @@ employés{% endblock %} {% block extra_css %}
         </tr>
         {% empty %}
         <tr>
-          <td colspan="5" class="empty-state">
+          <td colspan="6" class="empty-state">
             Aucun employé trouvé pour cette recherche.
           </td>
         </tr>
