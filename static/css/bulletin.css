@@ -32,6 +32,16 @@ body {
   text-align: center;
 }
 
+.logo-wrap {
+  margin-bottom: 10px;
+}
+
+.logo {
+  max-width: 120px;
+  max-height: 70px;
+  object-fit: contain;
+}
+
 .eyebrow {
   margin: 0 0 6px;
   font-size: 11px;

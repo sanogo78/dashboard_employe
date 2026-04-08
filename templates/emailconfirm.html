@@ -1,0 +1,49 @@
+{% autoescape off %}
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation d'email</title>
+    <link rel="stylesheet" href="{{ css_url }}" />
+  </head>
+  <body>
+    <div class="email-page">
+      <div class="email-card">
+        <div class="email-topbar"></div>
+
+        <div class="email-body">
+          <p class="email-kicker">TOP QUALITE</p>
+          <h1 class="email-title">Confirmez votre adresse e-mail</h1>
+          <p class="email-text">Bonjour {{ name }},</p>
+          <p class="email-text">
+            Bienvenue sur l'espace d'enregistrement des employes de
+            <strong>TOP QUALITE</strong>.
+          </p>
+          <p class="email-text">
+            Cliquez sur le bouton ci-dessous pour activer votre compte.
+          </p>
+
+          <div class="email-action">
+            <a
+              href="http://{{domain}}{% url 'activate' uidb64=uidb64 token=token %}"
+              class="email-button"
+            >
+              Confirmer mon adresse
+            </a>
+          </div>
+
+          <p class="email-help">
+            Si le bouton ne fonctionne pas, utilisez ce lien :
+          </p>
+          <p class="email-link">
+            <a href="http://{{domain}}{% url 'activate' uidb64=uidb64 token=token %}">
+              http://{{domain}}{% url 'activate' uidb64=uidb64 token=token %}
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endautoescape %}

@@ -5,9 +5,9 @@
 
 .employee-list-hero {
   display: grid;
-  grid-template-columns: 1.8fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: 18px;
-  align-items: center;
+  align-items: start;
   padding: 24px 28px;
   background:
     linear-gradient(135deg, rgba(15, 118, 110, 0.94) 0%, rgba(11, 92, 86, 0.92) 55%, rgba(16, 42, 67, 0.94) 100%);
@@ -47,6 +47,13 @@
   text-align: center;
 }
 
+.employee-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 100%;
+}
+
 .summary-label {
   display: block;
   margin-bottom: 6px;
@@ -64,7 +71,7 @@
 
 .search-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 260px) auto;
   gap: 18px;
   align-items: end;
 }
@@ -76,6 +83,15 @@
 
 .search-field label {
   margin-bottom: 8px;
+}
+
+.search-field input,
+.search-field select {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid #d9e2ec;
+  border-radius: 14px;
+  background: #fffdf9;
 }
 
 .search-actions {
@@ -140,6 +156,24 @@
   font-size: 0.88rem;
 }
 
+.employee-sex {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.employee-sex-homme {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.employee-sex-femme {
+  background: #fce7f3;
+  color: #be185d;
+}
+
 .table-actions {
   display: flex;
   flex-wrap: wrap;
@@ -158,8 +192,11 @@
 }
 
 @media (max-width: 980px) {
-  .employee-list-hero,
   .search-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .employee-summary-grid {
     grid-template-columns: 1fr;
   }
 
