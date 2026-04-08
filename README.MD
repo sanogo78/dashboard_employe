@@ -21,4 +21,4 @@ pensé à ajuster les paramètres dans settings.py et config.env
    - python manage.pu runserver
 
 5. rendez vous sur :
-   - [text](http://127.0.0.1:8000/)
+   - http://127.0.0.1:8000/
